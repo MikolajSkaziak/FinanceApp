@@ -1,7 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Numeric,Date
 from sqlalchemy.orm import declarative_base, relationship
-
-Base = declarative_base()
+from .Base import Base
 
 class Account(Base):
     __tablename__ = 'accounts'
@@ -15,7 +14,11 @@ class Account(Base):
     user_id = Column(Integer,  ForeignKey("users.id"), nullable=False)
     
     user=relationship("User", back_populates="accounts")
-    transactions = relationship("Transaction", back_populates="account")
+    transactions = relationship(
+    "Transaction",
+    back_populates="account",
+    cascade="all, delete-orphan"
+)
 
     def __repr__(self):
         return f"<Account(account_name='{self.account_name}', bank_name='{self.bank_name}', balance='{self.balance}')>"

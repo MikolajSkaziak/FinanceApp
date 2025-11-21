@@ -1,10 +1,10 @@
-from enum import Enum
+from sqlalchemy import Enum as SQLEnum
 from sqlalchemy import Column, ForeignKey, Integer, Numeric, String, DateTime
 from sqlalchemy.orm import declarative_base,relationship
 from datetime import datetime
 from backend.models.enums import TransactionType
+from .Base import Base
 
-Base= declarative_base()
 
 class Transaction(Base):
     __tablename__ = 'transactions'
@@ -12,7 +12,7 @@ class Transaction(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     amount = Column(Numeric(12,2), nullable=False)
     currency = Column(String(3), nullable=False)
-    transaction_type = Column(Enum(TransactionType), nullable=False)
+    transaction_type = Column(SQLEnum(TransactionType), nullable=False)
     category = Column(String(50), nullable=True)
     date = Column(DateTime, default=datetime.utcnow, nullable=False)
     description = Column(String(200), nullable=True)

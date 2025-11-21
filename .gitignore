@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Migrations (jeśli używasz Alembic/SQLAlchemy)
+migrations/
+
+# Baza danych (jeśli lokalna SQLite)
+*.db
+*.sqlite3
+
+# Logi
+*.log
