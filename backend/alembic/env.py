@@ -14,11 +14,11 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# add your model's MetaData object here
-# for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-target_metadata = None
+from backend.models.User import User
+from backend.models.Account import Account
+from backend.models.Transaction import Transaction
+
+target_metadata = [User.metadata, Account.metadata, Transaction.metadata]
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
