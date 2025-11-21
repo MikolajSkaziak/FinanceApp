@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from backend.db import get_db
 from backend.crud import user_crud
@@ -11,6 +11,11 @@ class UserCreate(BaseModel):
     username: str
     email: str
     password_hash: str
+
+class UserLogin(BaseModel):
+    email: str
+    password: str    
+
 
 # POST users
 @router.post("/", response_model=dict)
